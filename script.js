@@ -19,6 +19,7 @@ function writePassword() {
   passwordText.value = password;
 }
 
+//generate password for the writePassword function
 function generatePassword(options) {
   options = options || {
     passwordLength: 8,
@@ -27,8 +28,12 @@ function generatePassword(options) {
     useSpecial: true,
     useNumbers: true,
   };
+
+  //availChars begins as an empty string
   var password = '';
   var availChars = '';
+
+  //each true confirm from writePassword adds the corresponding string to the availChars
   if(options.useLowercase){
     availChars += lowerChars;
   }
@@ -42,8 +47,10 @@ function generatePassword(options) {
     availChars += numChars;
   }
 
-  console.log({ availChars });
+  //shows pool for available characters the generatePassword function pulls from:
+  //console.log({ availChars });
 
+  //random selection of characters to the user generated password length from the availble characters
   for (var i = 0; i < options.passwordLength; i++) {
     var index = Math.floor(Math.random() * availChars.length);
     password += availChars[index];
