@@ -9,6 +9,7 @@ var numChars = '1234567890';
 function writePassword() {
   var options = {};
   options.passwordLength = prompt('Choose password length between 8 and 128', 8);
+  options.useLowercase = confirm('Include lowercase letters?');
   options.useUppercase = confirm('Include uppercase letters?');
   options.useSpecial = confirm('Include special characters?');
   options.useNumbers = confirm('Include numbers?');
@@ -21,12 +22,16 @@ function writePassword() {
 function generatePassword(options) {
   options = options || {
     passwordLength: 8,
+    useLowercase: true,
     useUppercase: true,
     useSpecial: true,
     useNumbers: true,
   };
   var password = '';
   var availChars = '';
+  if(options.useLowercase){
+    availChars += lowerChars;
+  }
   if (options.useUppercase) {
     availChars += upperChars;
   }
